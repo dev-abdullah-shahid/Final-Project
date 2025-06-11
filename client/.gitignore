@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# Build directories
+build/
+dist/
+
+# Dependency directories
+client/node_modules/
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Mac system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
