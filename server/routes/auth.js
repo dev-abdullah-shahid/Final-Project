@@ -3,8 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const router = express.Router();
-
-// Register
+//Regiter
 router.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
   const hashed = await bcrypt.hash(password, 10);
