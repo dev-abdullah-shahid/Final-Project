@@ -1,3 +1,6 @@
+env/
+
+
 # Node modules
 node_modules/
 
@@ -12,3 +15,4 @@ node_modules/
 
 # Build folders (optional for React)
 client/build/
+
