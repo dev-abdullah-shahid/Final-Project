@@ -1,0 +1,67 @@
+/* Home.css */
+
+.home {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f8f8; /* Light background for the home page */
+}
+
+.intro {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.featured-projects,
+.community-board,
+.gallery {
+  margin: 40px 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #4CAF50; /* Green color for the main title */
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.project-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between project cards */
+}
+
+.community-posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.post {
+  background-color: #fff; /* White background for posts */
+  border: 1px solid #ddd; /* Light border */
+  padding: 15px;
+  border-radius: 5px;
+  width: 80%; /* Responsive width */
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between gallery images */
+}
+
+.gallery-images img {
+  width: 200px; /* Fixed width for images */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer on hover */
+}
+
+.gallery-images img:hover {
+  transform: scale(1.05); /* Zoom effect on hover */
+  transition: transform 0.3s; /* Smooth transition */
+}
