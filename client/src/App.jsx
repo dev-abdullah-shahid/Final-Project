@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Gallery from './pages/Gallery'; 
 import Community from './pages/Community';
+import Resources from './pages/Resources';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
@@ -16,7 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/community" element={<Community />} />
-        {/* <Route path="/resources" element={<Resources />} /> */}
+        <Route path="/resources" element={<Resources />} />
       </Routes>
       <Footer />
     </div>
