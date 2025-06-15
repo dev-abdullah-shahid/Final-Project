@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Gallery.css';
 
 const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -62,44 +63,46 @@ const Gallery = () => {
   ];
 
   const categories = [
-    { id: 'all', name: 'All Projects', color: 'bg-purple-500' },
-    { id: 'fitness', name: 'Fitness', color: 'bg-green-500' },
-    { id: 'startup', name: 'Startups', color: 'bg-blue-500' },
-    { id: 'project', name: 'Community', color: 'bg-orange-500' }
+    { id: 'all', name: 'All Projects', color: '#8b5cf6' },
+    { id: 'fitness', name: 'Fitness', color: '#10b981' },
+    { id: 'startup', name: 'Startups', color: '#3b82f6' },
+    { id: 'project', name: 'Community', color: '#f97316' }
   ];
 
   const filteredItems = selectedCategory === 'all' 
     ? galleryItems 
     : galleryItems.filter(item => item.category === selectedCategory);
 
+  const getCategoryColor = (categoryId) => {
+    return categories.find(cat => cat.id === categoryId)?.color || '#6b7280';
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="gallery-container">
       {/* Header */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20"></div>
-        <div className="relative px-6 py-16 text-center">
-          <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">
+      <div className="gallery-header">
+        <div className="gallery-header-content">
+          <h1 className="gallery-title">
             Creative Gallery
           </h1>
-          <p className="text-xl text-purple-200 max-w-2xl mx-auto leading-relaxed">
+          <p className="gallery-subtitle">
             Exploring the intersection of community, innovation, and creative energy through impactful projects
           </p>
         </div>
       </div>
 
       {/* Category Filter */}
-      <div className="px-6 py-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+      <div className="gallery-filter-section">
+        <div className="gallery-filter-wrapper">
+          <div className="gallery-filter-buttons">
             {categories.map(category => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
-                  selectedCategory === category.id
-                    ? `${category.color} text-white shadow-lg`
-                    : 'bg-white/10 text-white hover:bg-white/20'
-                }`}
+                className={`gallery-filter-btn ${selectedCategory === category.id ? 'active' : ''}`}
+                style={{
+                  backgroundColor: selectedCategory === category.id ? category.color : undefined
+                }}
               >
                 {category.name}
               </button>
@@ -107,70 +110,62 @@ const Gallery = () => {
           </div>
 
           {/* Gallery Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="gallery-grid">
             {filteredItems.map(item => (
               <div
                 key={item.id}
-                className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border border-white/10"
+                className="gallery-item"
                 onMouseEnter={() => setHoveredItem(item.id)}
                 onMouseLeave={() => setHoveredItem(null)}
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="gallery-image-container">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="gallery-item-image"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  <div className="gallery-image-overlay"></div>
                   
                   {/* Category Badge */}
-                  <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold text-white ${
-                    categories.find(cat => cat.id === item.category)?.color || 'bg-gray-500'
-                  }`}>
+                  <div 
+                    className="gallery-category-badge"
+                    style={{ backgroundColor: getCategoryColor(item.category) }}
+                  >
                     {categories.find(cat => cat.id === item.category)?.name || item.category}
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 space-y-4">
-                  <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                <div className="gallery-item-content">
+                  <h3 className="gallery-item-title">
                     {item.title}
                   </h3>
                   
-                  <p className="text-gray-300 text-sm leading-relaxed">
+                  <p className="gallery-item-description">
                     {item.description}
                   </p>
 
                   {/* Hover Details */}
-                  <div className={`space-y-3 transition-all duration-500 ${
-                    hoveredItem === item.id ? 'opacity-100 max-h-40' : 'opacity-0 max-h-0 overflow-hidden'
-                  }`}>
-                    <div className="h-px bg-gradient-to-r from-purple-500 to-blue-500"></div>
+                  <div className="gallery-hover-details">
+                    <div className="gallery-divider"></div>
                     
-                    <p className="text-purple-200 text-sm italic">
+                    <p className="gallery-details-text">
                       {item.details}
                     </p>
                     
-                    <div className="flex items-center justify-between">
-                      <span className="text-green-400 font-semibold text-sm">
+                    <div className="gallery-impact-container">
+                      <span className="gallery-impact-text">
                         Impact: {item.impact}
                       </span>
-                      <div className="flex space-x-1">
-                        {[...Array(3)].map((_, i) => (
-                          <div
-                            key={i}
-                            className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
-                            style={{ animationDelay: `${i * 0.2}s` }}
-                          ></div>
-                        ))}
+                      <div className="gallery-pulse-dots">
+                        <div className="gallery-pulse-dot"></div>
+                        <div className="gallery-pulse-dot"></div>
+                        <div className="gallery-pulse-dot"></div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Glow Effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-600/0 via-purple-600/5 to-blue-600/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
               </div>
             ))}
           </div>
@@ -178,12 +173,12 @@ const Gallery = () => {
       </div>
 
       {/* Footer */}
-      <div className="px-6 py-12 text-center">
-        <div className="max-w-2xl mx-auto">
-          <p className="text-purple-300 mb-4">
+      <div className="gallery-footer">
+        <div className="gallery-footer-content">
+          <p className="gallery-footer-text">
             "The profound communal aspect of creativity brings people together to build something meaningful."
           </p>
-          <div className="h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+          <div className="gallery-footer-divider"></div>
         </div>
       </div>
     </div>
