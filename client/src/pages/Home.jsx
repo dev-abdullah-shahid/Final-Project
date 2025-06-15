@@ -39,9 +39,8 @@ const Home = () => {
       <section className="gallery">
         <h2>Our Gallery</h2>
         <div className="gallery-images">
-          <img src="/path/to/image1.jpg" alt="Project 1" />
-          <img src="/path/to/image2.jpg" alt="Project 2" />
-          <img src="/path/to/image3.jpg" alt="Project 3" />
+          <img src="p1.png" alt="Project 1" />
+          <img src="weel.png" alt="Project 2" />
         </div>
       </section>
 
