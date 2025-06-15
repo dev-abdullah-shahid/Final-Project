@@ -69,6 +69,8 @@ h2 {
 }
 
 .gallery-images img {
+  gap: 10px; 
+  padding-right: 20px;
   width: 200px; /* Fixed width for images */
   height: auto; /* Maintain aspect ratio */
   border-radius: 10px; /* Rounded corners */
@@ -78,7 +80,7 @@ h2 {
 
 .gallery-images img:hover {
   transform: scale(1.1); /* Zoom effect on hover */
-  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3); /* Glow effect on hover */
+  box-shadow: 0 4px 12px rgba(213, 12, 163, 0.3); /* Glow effect on hover */
 }
 
 /* Animations */
