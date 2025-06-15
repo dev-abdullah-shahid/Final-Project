@@ -48,7 +48,7 @@ const Header = () => {
           <span>Gallery</span>
         </Link>
         
-        <Link to="/community" className="nav-btn">
+        <Link to="/Community" className="nav-btn">
           <span className="icon-community">👥</span>
           <span>Community</span>
         </Link>
