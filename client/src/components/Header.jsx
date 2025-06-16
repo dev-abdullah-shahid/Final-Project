@@ -8,7 +8,7 @@ const Header = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // Handle search functionality
+    // Implement search logic here (e.g., redirect or filter)
     console.log('Searching for:', searchQuery);
   };
 
@@ -48,7 +48,7 @@ const Header = () => {
           <span>Gallery</span>
         </Link>
         
-        <Link to="/Community" className="nav-btn">
+        <Link to="/community" className="nav-btn">
           <span className="icon-community">👥</span>
           <span>Community</span>
         </Link>
@@ -68,11 +68,11 @@ const Header = () => {
           ⋯
         </button>
         <button 
-          className="login-btn"
-          onClick={() => console.log('Login clicked')}
+          className="signup-btn"
+          onClick={() => window.location.href = '/signup'} // Redirect to signup page
         >
           <span className="icon-user">👤</span>
-          Login / Join
+          Signup
         </button>
       </div>
 

@@ -1,13 +1,34 @@
+const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
-exports.verifyToken = (req, res, next) => {
-    const token = req.headers['authorization'];
+// Signup
+exports.signup = async (req, res) => {
+    const { username, email, password } = req.body;
 
-    if (!token) return res.status(403).send("A token is required for authentication");
+    try {
+        const newUser = new User({ username, email, password });
+        await newUser.save();
 
-    jwt.verify(token, 'your_jwt_secret', (err, user) => {
-        if (err) return res.sendStatus(401);
-        req.user = user;
-        next();
-    });
+        const token = jwt.sign({ userId: newUser._id }, 'your_jwt_secret', { expiresIn: '1h' });
+        res.status(201).json({ token });
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+// Login
+exports.login = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user || !(await user.comparePassword(password))) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        const token = jwt.sign({ userId: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
+        res.status(200).json({ token });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };

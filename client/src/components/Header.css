@@ -152,7 +152,7 @@
   color: #c4b5fd; /* Updated hover color */
 }
 
-.login-btn {
+.signup-btn {
   display: flex;
   align-items: center;
   gap: 8px;
